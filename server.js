@@ -9,14 +9,15 @@
 // console.log(res);
 // import { db } from './db';
 const express = require("express");
-const { db } = require("./db");
-const Person  = require("./models/Person");
+const db = require("./db");
+const Person = require("./models/Person");
 const Menu = require("./models/Menu");
 const app = express();
-
+require("dotenv").config();
 const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+const PORT = process.env.PORT || 3000;
 
+app.use(bodyParser.json());
 
 app.post("/person", async (req, res) => {
   try {
@@ -69,8 +70,9 @@ app.post("/person", async (req, res) => {
 
 //     res.send(li.items);
 // })
-const personRoutes = require('./routes/personRoutes');
-app.use('/person',personRoutes);
+const personRoutes = require("./routes/personRoutes");
+app.use("/person", personRoutes);
 const menuRoutes = require("./routes/menuRoutes");
-app.use('/menu',menuRoutes);
+app.use("/menu", menuRoutes);
+
 app.listen(3000);
