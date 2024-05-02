@@ -4,7 +4,9 @@ const Person = require("./../models/Person");
 
 router.post("/", async (req, res) => {
   try {
-    const data = req.body; //assuming req.body contains person data
+    // req.body contains person data
+    const data = req.body; 
+
     //create a new Person document in db
     const newPerson = new Person(data);
     //save new person in db
